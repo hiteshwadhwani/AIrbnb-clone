@@ -2,6 +2,9 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
+import Button from "./Button";
+import useRegisterModal from "@/app/hooks/userRegisterModal";
+import Heading from "./Heading";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -13,7 +16,7 @@ interface ModalProps {
   actionLabel: String;
   disabled?: boolean;
   secondaryAction?: () => void;
-  secondayLable?: String;
+  SecondaryActionLabel?: String;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -26,8 +29,9 @@ const Modal: React.FC<ModalProps> = ({
   actionLabel,
   disabled,
   secondaryAction,
-  secondayLable,
+  SecondaryActionLabel,
 }) => {
+  const registerModal = useRegisterModal()
   const [showModal, setShowModal] = useState(isOpen);
 
   useEffect(() => {
@@ -60,6 +64,8 @@ const Modal: React.FC<ModalProps> = ({
     return null;
   }
 
+  
+
   return (
     <>
       <div className="flex items-center justify-center inset-0 z-50 fixed overflow-x-hidden overflow-y-auto focus:outline-none bg-neutral-300/70">
@@ -85,9 +91,29 @@ const Modal: React.FC<ModalProps> = ({
               {/* header */}
               <div className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
                 <button className="p-1 border-0 hover:opacity-70 transition absolute left-0">
-                  <IoMdClose />
+                  <IoMdClose onClick={registerModal.onClose} />
                 </button>
                 <div>{title}</div>
+              </div>
+              {/* body */}
+              <div className="relative p-6 flex-auto">{body}</div>
+              {/* footer */}
+              <div className="flex flex-col gap-2 p-6">
+                <div className="flex flex-row items-center gap-4 w-full">
+                  {secondaryAction && SecondaryActionLabel && (
+                    <Button
+                      label={SecondaryActionLabel}
+                      onCLick={secondaryAction}
+                      outline
+                      disabled={disabled}
+                    />
+                  )}
+                  <Button
+                    label={actionLabel}
+                    disabled={disabled}
+                    onCLick={onSubmit}
+                  />
+                </div>
               </div>
             </div>
           </div>

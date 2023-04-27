@@ -4,15 +4,14 @@ import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "../Avatar";
 import { useState, useCallback } from "react";
 import MenuItem from "./MenuItem"
+import useRegisterModal from "../../hooks/userRegisterModal"
 
 const Usermenu = () => {
+  const registerModal = useRegisterModal()
   const [isOpen, setIsOpen] = useState(false);
   const handleUserMenu = useCallback(() => {
     setIsOpen((val) => !val);
   }, []);
-  const handleMenuItemClick = () => {
-
-  }
   return (
     <div className="relative">
       <div className="flex items-center flex-row">
@@ -59,10 +58,8 @@ const Usermenu = () => {
                     flex-col
                 "
           >
-            <MenuItem onclick={() => handleMenuItemClick()} label={'Sign up'} />
-            <MenuItem onclick={() => handleMenuItemClick()} label={'Log in'} />
-            <MenuItem onclick={() => handleMenuItemClick()} label={'Airbnb your home'} />
-            <MenuItem onclick={() => handleMenuItemClick()} label={'help'} />
+            <MenuItem onclick={registerModal.onOpen} label={'Sign up'} />
+            <MenuItem onclick={() => {}} label={'Log in'} />
           </div>
         </div>
       )}

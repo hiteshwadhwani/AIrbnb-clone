@@ -52,7 +52,15 @@ const RegisterdModal = () => {
   const FooterComponent = (
     <div className="flex flex-col gap-4 mt-3">
       <hr />
-      <Button label='Continue with Google' onCLick={() => {}} icon={FcGoogle} outline rounded /> 
+      <Button label='Continue with Google' onCLick={() => {}} icon={FcGoogle} outline  /> 
+      <Button label='Continue with Google' onCLick={() => {}} icon={AiFillGithub} outline  /> 
+      <div className="mt-4 text-neutral-500">
+        <div className="flex flex-row justify-center gap-4">
+          <div>Already have an account ?</div>
+          <div onClick={registerModal.onClose} className="cursor-pointer text-neutral-800 hover:underline">Login</div>
+        </div>
+
+      </div>
     </div>
   )
 

@@ -81,13 +81,13 @@ const RegisterdModal = () => {
       <hr />
       <Button
         label="Continue with Google"
-        onCLick={() => {}}
+        onCLick={() => {signIn("google")}}
         icon={FcGoogle}
         outline
       />
       <Button
         label="Continue with Google"
-        onCLick={() => {}}
+        onCLick={() => {signIn("github")}}
         icon={AiFillGithub}
         outline
       />

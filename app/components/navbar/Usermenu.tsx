@@ -46,7 +46,7 @@ const Usermenu: React.FC<userMenuProps> = ({ currentUser }) => {
           className="flex flex-row items-center p-4 md:py-1 md:px-2 border-[1px] border-neutral-300 rounded-full cursor-pointer hover:shadow-md gap-3"
         >
           <AiOutlineMenu />
-          <Avatar />
+          <Avatar src={currentUser?.image} />
         </div>
       </div>
       {isOpen && (

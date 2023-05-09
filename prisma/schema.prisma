@@ -12,9 +12,9 @@ datasource db {
 
 model User {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  email          String? @unique
+  email          String?   @unique
   name           String?
-  emailverified  DateTime?
+  emailVerified  DateTime?
   image          String?
   hashedPassword String?
   createdAt      DateTime  @default(now())
@@ -64,14 +64,14 @@ model Listing {
 }
 
 model Reservation {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
-  listingId String @db.ObjectId
-  startDate DateTime
-  endDate DateTime
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  listingId  String   @db.ObjectId
+  startDate  DateTime
+  endDate    DateTime
   totalPrice Int
-  createAt DateTime @default(now())
+  createAt   DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id], onDelete:Cascade)
-  listing Listing @relation(fields: [listingId], references: [id], onDelete:Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }

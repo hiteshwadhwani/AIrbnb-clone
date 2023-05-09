@@ -12,6 +12,7 @@ import useRegisterModal from "../../hooks/userRegisterModal";
 import Heading from "./Heading";
 import Input from "./Input";
 import Button from "./Button";
+import { signIn } from "next-auth/react";
 
 const RegisterdModal = () => {
   const registerModal = useRegisterModal();
@@ -83,13 +84,13 @@ const RegisterdModal = () => {
       <hr />
       <Button
         label="Continue with Google"
-        onCLick={() => {}}
+        onCLick={() => {signIn("google")}}
         icon={FcGoogle}
         outline
       />
       <Button
-        label="Continue with Google"
-        onCLick={() => {}}
+        label="Continue with Github"
+        onCLick={() => {signIn("github")}}
         icon={AiFillGithub}
         outline
       />

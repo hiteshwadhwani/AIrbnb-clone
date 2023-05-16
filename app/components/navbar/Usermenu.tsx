@@ -9,6 +9,7 @@ import useLoginModal from "../../hooks/useLoginModal";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import {SafeUser} from "../../types/index"
+import useRentModal from "@/app/hooks/useRentModal ";
 
 
 interface userMenuProps {
@@ -18,14 +19,24 @@ interface userMenuProps {
 const Usermenu: React.FC<userMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const rentModal = useRentModal()
   const [isOpen, setIsOpen] = useState(false);
   const handleUserMenu = useCallback(() => {
     setIsOpen((val) => !val);
   }, []);
+
+  const onRent = useCallback(() => {
+    if(!currentUser){
+      return loginModal.onOpen()
+    }
+    return rentModal.onOpen()
+
+  }, [currentUser, loginModal, rentModal])
   return (
     <div className="relative">
       <div className="flex items-center flex-row">
         <div
+          onClick={onRent}
           className="
                 hidden
                 md:block

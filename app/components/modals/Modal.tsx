@@ -31,7 +31,6 @@ const Modal: React.FC<ModalProps> = ({
   secondaryAction,
   SecondaryActionLabel,
 }) => {
-  const registerModal = useRegisterModal()
   const [showModal, setShowModal] = useState(isOpen);
 
   useEffect(() => {
@@ -91,7 +90,7 @@ const Modal: React.FC<ModalProps> = ({
               {/* header */}
               <div className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
                 <button className="p-1 border-0 hover:opacity-70 transition absolute left-0">
-                  <IoMdClose onClick={registerModal.onClose} />
+                  <IoMdClose onClick={onClose} />
                 </button>
                 <div>{title}</div>
               </div>

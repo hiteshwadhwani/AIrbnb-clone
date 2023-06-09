@@ -6,12 +6,11 @@ import ListingInfo from "@/app/components/listing/ListingInfo";
 import ListingReservation from "@/app/components/listing/ListingReservation"
 
 import { categories } from "@/app/components/navbar/categories";
-import { safeListing, SafeUser } from "@/app/types";
+import { safeListing, SafeUser, safeReservation } from "@/app/types";
 import {Range} from 'react-date-range'
 
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
-import { Reservation } from "@prisma/client";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -20,7 +19,7 @@ import { useRouter } from "next/navigation";
 
 
 interface listingClientProps {
-  reservations?: Reservation[];
+  reservations: safeReservation[];
   listing: safeListing & {
     user: SafeUser;
   };
@@ -75,9 +74,8 @@ const ListingClient: React.FC<listingClientProps> = ({
       })
       .then((res) => {
         toast.success("Reservation Done");
-        // redirect to /trip
         setDateRange(initialDateRange);
-        router.refresh();
+        router.push('/trips')
       })
       .catch((error: any) => {
         toast.error("Something went wrong");
@@ -89,7 +87,8 @@ const ListingClient: React.FC<listingClientProps> = ({
     dateRange,
     listing,
     loginModal,
-    router
+    router,
+    initialDateRange
   ]);
 
   const category = useMemo(() => {

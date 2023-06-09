@@ -5,6 +5,7 @@ import {Range} from 'react-date-range'
 
 //components
 import DatePicker from "../Input/Calendar"
+import Button from '../modals/Button'
 
 interface ListingReservationProps{
     price: number,
@@ -26,6 +27,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({price,totalPrice
             <hr />
             <DatePicker value={dateRange} disabledDates={disabledDates} onChange={(value) => onChangeDate(value.selection)} />
             <hr />
+            <Button label={'reserve'} onCLick={onSubmit} />
             <div className='flex flex-row justify-between p-4 items-center font-semibold text-lg'>
                 <div>price</div>
                 <div>{totalPrice}</div>

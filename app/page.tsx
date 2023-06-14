@@ -6,14 +6,16 @@ import EmptyPage from "./EmptyPage"
 import { getListings } from "./actions/getListings";
 import ListingCard from "../app/components/listing/ListingCard"
 
+import {IListingParams} from '@/app/actions/getListings'
+
 const inter = Inter({ subsets: ["latin"] });
 
-// interface HomeProps{
-//   searchParams: string
-// }
+interface HomeProps{
+  searchParams: IListingParams
+}
 
-const Home = async () => {
-  const listings = await getListings()
+const Home = async ({searchParams} : HomeProps) => {
+  const listings = await getListings(searchParams)
   const currentUser = await getCurrentUser()
 
   if(listings.length === 0){

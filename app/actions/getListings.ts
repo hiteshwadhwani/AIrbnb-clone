@@ -1,10 +1,28 @@
 import getCurrentUser from "./getCurrentUser";
 import { NextResponse } from "next/server";
 import prisma from "../libs/prismadb";
+import { SafeUser } from "../types";
 
-const getListings = async () => {
+export interface IListingParams{
+  userId ?: string | null
+}
+
+const getListings = async (params: IListingParams) => {
   try {
-    const listings = await prisma.listing.findMany();
+
+    const {userId} = params
+
+    let query : any = {}
+
+    if(userId){
+      query.userId = userId
+    }
+    const listings = await prisma.listing.findMany({
+      where: query,
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
     const safeListings = listings.map((listing) => ({
       ...listing,
       createdAt: listing.createdAt.toISOString(),

@@ -5,7 +5,7 @@ import { SafeUser } from "../types";
 import {CountrySelectValue} from '@/app/components/Input/CountrySelect'
 
 export interface IListingParams{
-  userId ?: string | null
+  userId ?: string
   category?: string
   location ?: string,
   guestCount ?: number,
